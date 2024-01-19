@@ -1,4 +1,4 @@
-import property from "../../../backend/src/models/property";
+
 import axiosConfig from "../config/axiosConfig";
 
 // ownerAuthAPI
