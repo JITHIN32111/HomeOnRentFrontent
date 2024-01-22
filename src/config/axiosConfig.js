@@ -8,7 +8,7 @@
 // export default axiosConfig;
 import axios from "axios";
 
-const baseURL = process.env.NODE_ENV === "production" ? '/api' :'http://localhost:5000/api';
+const baseURL = process.env.NODE_ENV === "production" ? '/api' :'https://homeonrentback.onrender.com';
 
 const axiosConfig = axios.create({
   baseURL,
