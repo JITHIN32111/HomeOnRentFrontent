@@ -1,18 +1,10 @@
-// import axios from "axios";
-// const baseURL=process.env.NODE_ENV==="production"?'/api':import.meta.env.VITE_BACKEND_URL
-// const axiosConfig = axios.create({
-//   baseURL,
-//   withCredentials: true,   
-// });
-
-// export default axiosConfig;
 import axios from "axios";
-
-const baseURL = process.env.NODE_ENV === "production" ? '/api' :'https://homeonrentback.onrender.com/api';
+// const baseURL=process.env.NODE_ENV==="production"?'/api':import.meta.env.VITE_BACKEND_URL
+const baseURL = process.env.NODE_ENV === "production" ? 'https://homeonrentback.onrender.com' : import.meta.env.VITE_BACKEND_URL;
 
 const axiosConfig = axios.create({
   baseURL,
-  withCredentials: true,
+  withCredentials: true,   
 });
 
 export default axiosConfig;
