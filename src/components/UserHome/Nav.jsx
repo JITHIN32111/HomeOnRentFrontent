@@ -1,8 +1,10 @@
-import React from 'react';
+import React from "react";
 import { clearUserDetails } from "../../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+
 function Nav() {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(clearUserDetails());
     navigate("/user/login");
@@ -14,10 +16,15 @@ function Nav() {
           <h1 className="text-xl md:text-2xl font-bold">HomeOnRent.in</h1>
           <ul className="flex items-center space-x-5 text-xs md:text-base">
             <li>Features</li>
-            <li>Trending</li>
+            <Link to={"/admin/login"}>
+              <li>Trending</li>
+            </Link>
             <li>About</li>
           </ul>
-          <button onClick={handleLogout} className="bg-yellow-400 px-5 py-2 rounded-xl text-xs md:text-base">
+          <button
+            onClick={handleLogout}
+            className="bg-yellow-400 px-5 py-2 rounded-xl text-xs md:text-base"
+          >
             Logout
           </button>
         </nav>

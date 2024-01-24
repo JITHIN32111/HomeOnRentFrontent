@@ -258,6 +258,7 @@ console.log({...state});
                  Explore 
                 </button>
               </Link>
+             
             </div>
           </div>
         </div>
