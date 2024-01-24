@@ -148,7 +148,7 @@ function ListProperty() {
                 <input
                   class="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                   type="text"
-                  placeholder="price*"
+                  placeholder="Rent/Month"
                   name="price"
                   required
                   onChange={(event) => {
