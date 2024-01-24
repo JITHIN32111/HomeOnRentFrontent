@@ -22,7 +22,7 @@ function Hero() {
          </div>
          <div>
           {/*image*/}
-          <div className='xl:absolute   xl:-right-12 xl:bottom-16 max-w-[580px]  ' data-aos='fade-up' data-aos-delay='700'>
+          <div className='xl:absolute   xl:-right-9 xl:bottom-16 max-w-[580px]  ' data-aos='fade-up' data-aos-delay='700'>
             <img src={image}  alt="" />
           </div>
          </div>

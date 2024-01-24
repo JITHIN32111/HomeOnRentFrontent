@@ -1,11 +1,12 @@
 import React from "react";
-import {logout } from '../../../redux/authSlice'
+import { logout } from "../../../redux/authSlice";
 
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Link, animateScroll as scroll } from "react-scroll";
 function Header() {
   const { user } = useSelector((state) => state.auth);
 
@@ -15,7 +16,6 @@ function Header() {
     dispatch(logout());
     navigate("/signup");
   };
-  
 
   const [navbar, setNavbar] = useState(false);
 
@@ -73,16 +73,20 @@ function Header() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Properties</a>
+                <Link to="about" smooth={true} duration={500}>
+                  About
+                </Link>{" "}
               </li>
               <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Schedules</a>
+                <Link to="services" smooth={true} duration={500}>
+                  Services
+                </Link>{" "}
               </li>
+
               <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Reviews</a>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Contact US</a>
+                <Link to="contact" smooth={true} duration={500}>
+                  Contact
+                </Link>{" "}
               </li>
             </ul>
 
@@ -94,7 +98,6 @@ function Header() {
               >
                 Logout
               </a>
-             
             </div>
           </div>
         </div>
@@ -106,7 +109,6 @@ function Header() {
           >
             Logout
           </a>
-        
         </div>
       </div>
     </nav>

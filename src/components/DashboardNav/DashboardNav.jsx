@@ -55,6 +55,7 @@ function DashboardNav() {
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <a href="javascript:void(0)">
+              
               <h2 className="text-2xl font-bold text-black">HomeOnRent</h2>
             </a>
             <div className="md:hidden">
@@ -101,20 +102,7 @@ function DashboardNav() {
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Properties</a>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Schedules</a>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Reviews</a>
-              </li>
-              <li className="text-white hover:text-indigo-200">
-                <a href="javascript:void(0)">Contact US</a>
-              </li>
-            </ul>
+           
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
               <a

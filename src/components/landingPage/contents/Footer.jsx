@@ -5,7 +5,7 @@ import Copyright from'./Copyright'
 function Footer() {
   const { logo, address, email, phone, list1, list2, socialList } = footerData;
   return (
-    <div className="" data-aos='fade-up '>
+    <div className="" data-aos='fade-up ' id="contact">
       <div className="container mx-auto ">
         <div className="flex flex-col xl:flex-row text-center xl:text-left gap-y-12">
           <div className="w-[45%] mx-auto flex flex-col items-center xl:items-start ">

@@ -9,7 +9,7 @@ import gif from "../../assets/img/housegif.gif";
 import { useFormik } from "formik";
 import { UserLogin } from "../../schemas/index";
 import {authAPI} from "../../api/api";
-
+import img from '../../assets/signin.jpg'
 const { doSignin } = authAPI();
 
 const initialValues = {
@@ -99,7 +99,7 @@ const Signin = () => {
               {/* <img src={logo} className="w-40" alt="logo" /> */}
             </div>
             <img
-              src="https://hips.hearstapps.com/hmg-prod/images/home-quotes-v2-albanian-to-austen2-1659715834.jpg?resize=480:*"
+              src={img}
               alt=""
               srcset=""
             />
@@ -200,6 +200,14 @@ const Signin = () => {
               <Link to={"/signup"}>
                 <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
                   register
+                </button>
+              </Link>
+            </div>
+            <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
+              <p>are you a user?</p>
+              <Link to={"/user"}>
+                <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
+                 Explore 
                 </button>
               </Link>
             </div>

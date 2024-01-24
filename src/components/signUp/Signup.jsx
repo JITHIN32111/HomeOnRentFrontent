@@ -9,6 +9,7 @@ import Swal from "sweetalert";
 import { ToastContainer, toast } from "react-toastify";
 import gif from "../../assets/img/housegif.gif";
 import  {authAPI}  from "../../api/api";
+import img from '../../assets/signup.jpg'
 const {doSignup}=authAPI()
 
 const initialValues = {
@@ -55,9 +56,10 @@ console.log({...state});
 
    try{
     const res=await doSignup({...state})
-    toast.success("please check your email", {
-           position: toast.POSITION.TOP_CENTER,
-           });  
+    toast.success("Sign up successful", {
+      position: toast.POSITION.TOP_CENTER,
+      onClose: () => navigate("/signin"),
+    });
    }
  
    catch(err){
@@ -96,7 +98,7 @@ console.log({...state});
               {/* <img src={logo} className="w-40" alt="logo" /> */}
             </div>
             <img
-              src="https://hips.hearstapps.com/hmg-prod/images/home-quotes-v25-1659710362.jpg"
+              src={img}
               alt=""
               srcset=""
             />
@@ -253,7 +255,7 @@ console.log({...state});
               <p>are you a user?</p>
               <Link to={"/user"}>
                 <button className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
-                 click 
+                 Explore 
                 </button>
               </Link>
             </div>

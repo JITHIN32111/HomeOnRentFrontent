@@ -1,4 +1,3 @@
-
 import axiosConfig from "../config/axiosConfig";
 
 // ownerAuthAPI
@@ -28,8 +27,8 @@ const authAPI = () => {
 
 // propertyAPI
 const propertyAPI = () => {
-     const addImage = async (formData) => {
-     const res = await axiosConfig.post("/property/upload", formData);
+  const addImage = async (formData) => {
+    const res = await axiosConfig.post("/property/upload", formData);
     return res;
   };
 
@@ -110,11 +109,15 @@ const propertyAPI = () => {
     const res = await axiosConfig.get(`/property/getDetailsUserSide`);
     return res;
   };
-  const getFilterProperties = async (locationValue, propertyTypeValue, priceValue) => {
+  const getFilterProperties = async (
+    locationValue,
+    propertyTypeValue,
+    priceValue
+  ) => {
     const res = await axiosConfig.post("/property/getFilterProperties", {
-           location: locationValue,
-           propertyType: propertyTypeValue,
-        price: priceValue
+      location: locationValue,
+      propertyType: propertyTypeValue,
+      price: priceValue,
     });
     return res;
   };
@@ -127,13 +130,16 @@ const propertyAPI = () => {
     return res;
   };
 
-
   const updateMaxCount = async (id) => {
     const res = await axiosConfig.post(`/property/updateMaxCount/${id}`);
     return res;
   };
   const payment = async (data) => {
-    const res = await axiosConfig.post(`/property/payment`,data);
+    const res = await axiosConfig.post(`/property/payment`, data);
+    return res;
+  };
+  const walletAdmin = async () => {
+    const res=await axiosConfig.get(`/property/walletDetails`);
     return res;
   };
   return {
@@ -159,6 +165,7 @@ const propertyAPI = () => {
     deleteImg,
     deleteProperty,
     getSchedules,
+    walletAdmin,
   };
 };
 // propertyAPI
@@ -174,7 +181,7 @@ const userAPI = () => {
     return res;
   };
   const userLoginWithGoogle = async (details) => {
-    const res = await axiosConfig.post(`/user/login`,details);
+    const res = await axiosConfig.post(`/user/login`, details);
     return res;
   };
   const userLogin = async (email) => {
@@ -182,10 +189,16 @@ const userAPI = () => {
     return res;
   };
   const userSignup = async (details) => {
-    const res = await axiosConfig.post(`/user/register`,details);
+    const res = await axiosConfig.post(`/user/register`, details);
     return res;
   };
-  return { getUserDetails, sendOwnerdetails,userLogin,userLoginWithGoogle,userSignup};
+  return {
+    getUserDetails,
+    sendOwnerdetails,
+    userLogin,
+    userLoginWithGoogle,
+    userSignup,
+  };
 };
 // userAPI
 

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
+import { propertyAPI } from "../../api/api";
+const { walletAdmin } = propertyAPI();
 const AdminCharts = ({
   approvedPropertyCount,
   pendingPropertyCount,
@@ -105,25 +107,23 @@ const AdminCharts = ({
   };
   async function wallet() {
     try {
-      await axios
-        .get("http://localhost:5000/property/walletDetails")
-        .then((response) => {
-          const allPrice = response.data;
-          const totalPrice = allPrice.reduce(
-            (total, data) => total + data.price,
-            0
-          );
-          setTotal(totalPrice);
+      await walletAdmin().then((response) => {
+        const allPrice = response.data;
 
-          setwalletDetails(allPrice);
-        });
+        const totalPrice = allPrice.reduce(
+          (total, data) => total + data.price,
+          0
+        );
+        setTotal(totalPrice);
+
+        setwalletDetails(allPrice);
+      });
     } catch (err) {
       console.log(err);
     }
   }
   useEffect(() => {
     wallet();
-    console.log("::::::::");
   }, []);
 
   return (

@@ -96,7 +96,7 @@ function DetailsPage() {
     console.log(ph);
 
     try {
-      const phone = "+91" + userDetails.phone;
+      const phone = `+${ph}`;
       let recaptchaVerifier = await new RecaptchaVerifier(
         "recaptcha",
         {},
@@ -394,7 +394,8 @@ function DetailsPage() {
                                     </label>
                                     <PhoneInput
                                       country={"in"}
-                                      value={"919061029928"}
+                                      // value={"919061029928"}
+                                      value={ph}
                                       onChange={setPh}
                                       className="ml-6 w-full"
                                     />

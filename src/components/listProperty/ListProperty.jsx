@@ -3,9 +3,7 @@ import { useState } from "react";
 import OwnerDetials from "../ownerDetails/OwnerDetials";
 import { useDispatch, useSelector } from "react-redux";
 import { houseDetails } from "../../redux/propertySlice";
-import axios from "axios";
 import Header from "../landingPage/contents/Header";
-
 import { useNavigate } from "react-router-dom";
 import img from "../../assets/back.jpg";
 import { propertyAPI } from "../../api/api";
@@ -18,7 +16,7 @@ function ListProperty() {
 
   const navigate = useNavigate();
 
-  const [state, setState] = useState({});
+  const [state, setState] = useState({ type: '4BHK' }); // Set the initial value directly
   const [image, setImage] = useState();
   const { user } = useSelector((state) => state.auth);
 
@@ -28,7 +26,50 @@ function ListProperty() {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
-  const handleRegister = async (e) => {
+  // const handleRegister = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+
+  //   try {
+  //     const formData = new FormData();
+  //     for (let i = 0; i < image.length; i++) {
+  //       formData.append("files", image[i]);
+  //     }
+
+  //     // await axios
+  //     //   .post("http://localhost:5000/property/upload", formData)
+  //     //   .then((response) => {
+  //     //     const img = [...response.data];
+  //     //     console.log(img);
+  //     //     dispatch(houseDetails({ ...state, img }));
+  //     //     // setShowComponent(true)
+  //     //     const { sellername: name, email, phone } = user;
+  //     //     console.log(name, email, phone);
+  //     //     let details = { name, email, phone, img, ...state };
+  //     //     console.log(details);
+  //     //     axios
+  //     //       .post("http://localhost:5000/property/listProperty", { details })
+  //     //       .then((response) => {
+  //     //         navigate("/dashboard");
+  //     //       });
+  //     //   });
+  //     const res = await addImage(formData);
+  //     const img = [...res.data];
+  //     dispatch(houseDetails({ ...state, img }));
+  //     const { sellername: name, email, phone } = user;
+  //     let details = { name, email, phone, img, ...state };
+  //     console.log(details);
+  //     const data = await addProperty(details)
+  //     toast.success("property added succesfully", {
+  //       position: toast.POSITION.TOP_CENTER,
+  //     });
+  //     navigate("/dashboard");
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+ const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -38,40 +79,35 @@ function ListProperty() {
         formData.append("files", image[i]);
       }
 
-      // await axios
-      //   .post("http://localhost:5000/property/upload", formData)
-      //   .then((response) => {
-      //     const img = [...response.data];
-      //     console.log(img);
-      //     dispatch(houseDetails({ ...state, img }));
-      //     // setShowComponent(true)
-      //     const { sellername: name, email, phone } = user;
-      //     console.log(name, email, phone);
-      //     let details = { name, email, phone, img, ...state };
-      //     console.log(details);
-      //     axios
-      //       .post("http://localhost:5000/property/listProperty", { details })
-      //       .then((response) => {
-      //         navigate("/dashboard");
-      //       });
-      //   });
       const res = await addImage(formData);
       const img = [...res.data];
       dispatch(houseDetails({ ...state, img }));
       const { sellername: name, email, phone } = user;
       let details = { name, email, phone, img, ...state };
       console.log(details);
-      const data = await addProperty(details);
-      toast.success("property added succesfully", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      navigate("/dashboard");
+
+      // Use try-catch to handle errors from the backend
+      try {
+        const data = await addProperty(details);
+        toast.success("property added successfully", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        navigate("/dashboard");
+      } catch (error) {
+        // Check if the error message indicates an address not found
+          toast.error("Invalid address or location not found.", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        
+      }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  console.log();
+  // ... (rest of the code)
 
   return (
     <>
@@ -104,6 +140,7 @@ function ListProperty() {
                   placeholder="title*"
                   name="title"
                   required
+
                   onChange={(event) => {
                     handleState(event);
                   }}
@@ -140,18 +177,19 @@ function ListProperty() {
                   }}
                 />
                 <div>
-                  <select
-                    required
-                    name="type"
-                    class="block w-full px-4 py-2 h-12 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outlinefocus:ring"
-                    onChange={(event) => {
-                      handleState(event);
-                    }}
-                  >
-                    <option>4BHK</option>
-                    <option>3BHK</option>
-                    <option>2BHK</option>
-                  </select>
+                <select
+  required
+  name="type"
+  class="block w-full px-4 py-2 h-12 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outlinefocus:ring"
+  onChange={(event) => {
+    handleState(event);
+  }}
+>
+  <option>4BHK</option>
+  <option>3BHK</option>
+  <option>2BHK</option>
+</select>
+
                 </div>
 
                 <div>

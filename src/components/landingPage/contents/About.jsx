@@ -11,7 +11,7 @@ function Overview() {
 
 
    >
-<div className='container mx-auto'>
+<div className='container mx-auto' id='about'>
   <div className='bg-accent-secondary/[15%] rounded-[50px] min-h-[560px] px-12 pb-12 flex flex-col text-center xl:flex-row xl:items-center xl:text-left xl:gap-x-[60px] xl:pb-0'>
     {/*image*/}
     <div className='flex-1' data-aos='zoom-in-left'>
