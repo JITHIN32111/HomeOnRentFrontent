@@ -7,6 +7,8 @@ import axios from "axios";
 import { signUpSchema } from "../../schemas/index";
 import Swal from "sweetalert";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import gif from "../../assets/img/housegif.gif";
 import  {authAPI}  from "../../api/api";
 import img from '../../assets/signup.jpg'
