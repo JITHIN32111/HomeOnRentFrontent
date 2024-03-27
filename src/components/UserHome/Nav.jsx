@@ -16,7 +16,7 @@ function Nav() {
           <h1 className="text-xl md:text-2xl font-bold">HomeOnRent.in</h1>
           <ul className="flex items-center space-x-5 text-xs md:text-base">
             <li>Features</li>
-            <Link to={"/Admin/login"}>
+            <Link >
               <li>Trending</li>
             </Link>
             <li>About</li>

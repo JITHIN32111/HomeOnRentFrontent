@@ -149,6 +149,7 @@ import UserLogin from "./pages/User/UserLogin";
 import UserSignup from "./pages/User/UserSignup";
 import PropertyDetails from "./pages/User/PropertyDetails";
 import Subscription from "./pages/Provider/Subscription";
+import NotFound from "./pages/ErrorPage/NotFound";
 function App() {
   const dispatch = useDispatch();
 
@@ -233,7 +234,8 @@ function App() {
         <Route path="/user/login" element={!userDetails?<UserLogin />:<Navigate to='/user'/>} />
         <Route path="/user/propertyDetails" element={userDetails?< PropertyDetails />:<Navigate to='/user/login'/>} />
         
-
+         {/* Not Found Route */}
+         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
