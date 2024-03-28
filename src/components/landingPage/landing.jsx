@@ -14,16 +14,17 @@ import About from './contents/About'
 import Feature from './contents/Feature';
 import Footer from './contents/Footer'
 import {logout} from '../../redux/authSlice'
+import {propertyAPI} from "../../api/api";
+const { checkProperty } = propertyAPI();
 
 function landing () {
-  const dispatch=useDispatch()
   const navigate=useNavigate()
   const {user}=useSelector((state)=>state.auth)
   useEffect(() => {
   
     (async () => {
-      const data= await axios.get(`http://localhost:5000/property/getProperty/${user.email}`);
- 
+      // const data= await axios.get(`http://localhost:5000/property/getProperty/${user.email}`);
+      const data = await checkProperty(user.email);
         const isExist = data.data.length === 0 ? false : true;
       
         if (isExist) {

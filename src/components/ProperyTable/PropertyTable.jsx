@@ -23,6 +23,8 @@ const PropertyTable = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [property, setProperty] = useState([]);
   const [schedules, setSchedules] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const toggleModal0 = () => {
     setmodalVisible0(!modalVisible0);
   };
@@ -90,6 +92,7 @@ console.log(id);
     }
   };
   const handleImage = async () => {
+    setLoading(true)
     try {
       const formData = new FormData();
       for (let i = 0; i < image.length; i++) {
@@ -105,6 +108,7 @@ console.log(id);
           //   .post("http://localhost:5000/property/pushImg", { img, propertyId })
              addNewImage(img,propertyId)
             .then((response) => {
+              setLoading(false)
               Swal("Updated!", "status updated as approved", "success").then(
                 () => {
                   // navigate(`/editProperty?id=${id}`)
@@ -512,6 +516,7 @@ console.log(id);
                         <textarea placeholder="Message*" class="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"></textarea>
                     </div> */}
                     <div class="my-2 w-1/2 lg:w-1/4">
+                      
                       <button
                         type="submit"
                         class="uppercase text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-full 
@@ -563,7 +568,6 @@ console.log(id);
                 Close
               </button>
               <div className="p-6 text-center">
-                <h1>galloooo</h1>
                 <div>
                   <form
                     onSubmit={(event) => {
@@ -615,12 +619,38 @@ console.log(id);
                       </div>
                     </div>
                     <div className="my-2 w-1/2 lg:w-1/4">
-                      <button
-                        type="submit"
-                        className="uppercase text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
-                      >
-                        Submit
-                      </button>
+                    <button
+                  type="submit"
+                  class="uppercase text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+                  disabled={loading} // Disable button when loading is true
+                >
+                  {loading ? (
+                    <svg
+                      class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="mx-auto"
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                      ></circle>
+                      <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647zM12 20c3.042 0 5.824-1.135 7.938-3l-2.647-3A7.962 7.962 0 0112 16v4zm5.291-9H12v4h5.291A7.962 7.962 0 0116 12c0-1.654.506-3.187 1.372-4.47l-2.647-3z"
+                      ></path>
+                    </svg>
+                  ) : (
+                    "Submit"
+                  )}
+                </button>
+                   
                     </div>
                   </form>
 
@@ -632,10 +662,11 @@ console.log(id);
                             <div class="w-full p-1 md:p-2">
                               <img
                                 alt="gallery"
-                                class="block h-full w-full rounded-lg object-cover object-center"
+                                class="block md:h-[200px] md:w-[250px] h-[100px] w-[150px] rounded-lg object-cover object-center"
                                 src={URL.createObjectURL(img)}
                               />
                             </div>
+
                             <button
                               onClick={() => handleDeleteImage(index)}
                               className="text-red-500 font-bold mt-1"
@@ -650,7 +681,7 @@ console.log(id);
                           <div class="w-full p-1 md:p-2">
                             <img
                               alt="gallery"
-                              class="block h-full w-full rounded-lg object-cover object-center"
+                              class="block md:h-[200px] md:w-[250px] h-[100px] w-[150px] rounded-lg object-cover object-center"
                               src={img.location}
                             />
                           </div>

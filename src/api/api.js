@@ -27,6 +27,11 @@ const authAPI = () => {
 
 // propertyAPI
 const propertyAPI = () => {
+
+  const checkProperty=async (mail) => {
+    const res =  await axiosConfig.get(`/property/getProperty/${mail}`);
+    return res;
+  };
   const addImage = async (formData) => {
     const res = await axiosConfig.post("/property/upload", formData);
     return res;
@@ -143,6 +148,7 @@ const propertyAPI = () => {
     return res;
   };
   return {
+    checkProperty,
     checkSubscription,
     payment,
     updateMaxCount,

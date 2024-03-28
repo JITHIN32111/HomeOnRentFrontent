@@ -15,8 +15,13 @@ function ListProperty() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImages] = useState([]);
 
-  const [state, setState] = useState({ type: '4BHK' }); // Set the initial value directly
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    setSelectedImages((prevImages) => [...prevImages, ...files]);
+  };
+  const [state, setState] = useState({ type: "4BHK" }); // Set the initial value directly
   const [image, setImage] = useState();
   const { user } = useSelector((state) => state.auth);
 
@@ -69,7 +74,7 @@ function ListProperty() {
   //   }
   // };
 
- const handleRegister = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -95,10 +100,9 @@ function ListProperty() {
         navigate("/dashboard");
       } catch (error) {
         // Check if the error message indicates an address not found
-          toast.error("Invalid address or location not found.", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        
+        toast.error("Invalid address or location not found.", {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     } catch (error) {
       console.error(error);
@@ -140,7 +144,6 @@ function ListProperty() {
                   placeholder="title*"
                   name="title"
                   required
-
                   onChange={(event) => {
                     handleState(event);
                   }}
@@ -177,19 +180,18 @@ function ListProperty() {
                   }}
                 />
                 <div>
-                <select
-  required
-  name="type"
-  class="block w-full px-4 py-2 h-12 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outlinefocus:ring"
-  onChange={(event) => {
-    handleState(event);
-  }}
->
-  <option>4BHK</option>
-  <option>3BHK</option>
-  <option>2BHK</option>
-</select>
-
+                  <select
+                    required
+                    name="type"
+                    class="block w-full px-4 py-2 h-12 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outlinefocus:ring"
+                    onChange={(event) => {
+                      handleState(event);
+                    }}
+                  >
+                    <option>4BHK</option>
+                    <option>3BHK</option>
+                    <option>2BHK</option>
+                  </select>
                 </div>
 
                 <div>
@@ -257,6 +259,7 @@ function ListProperty() {
                             type="file"
                             multiple
                             onChange={(e) => {
+                              handleFileChange(e);
                               setImage(e.target.files);
                             }}
                             class="sr-only"
@@ -265,6 +268,13 @@ function ListProperty() {
                         <p class="pl-1 text-black">or drag and drop</p>
                       </div>
                       <p class="text-xs text-black">PNG, JPG, GIF up to 10MB</p>
+                      <ul className="mt-2">
+                        {selectedImage.map((file, index) => (
+                          <li key={index} className="text-white text-start">
+                            {file.name}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
